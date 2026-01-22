@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Personal Dashboard</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+    }
+    * { box-sizing: border-box; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    body {
+      margin: 0; background: linear-gradient(135deg, #020617, #0f172a);
+      color: var(--text);
+    }
+    header {
+      padding: 24px; border-bottom: 1px solid #1f2933;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    header h1 { margin: 0; font-size: 24px; }
+    header span { color: var(--muted); font-size: 14px; }
+
+    .container { padding: 24px; max-width: 1200px; margin: auto; }
+
+    .grid {
+      display: grid; gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .card {
+      background: radial-gradient(1200px 400px at -10% -10%, #0ea5e933, transparent 40%), var(--card);
+      border: 1px solid #1f2933; border-radius: 16px; padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    .card h2 { margin-top: 0; font-size: 18px; }
+    .card p { color: var(--muted); line-height: 1.6; }
+
+    .stat {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 12px; font-size: 14px;
+    }
+    .stat strong { font-size: 22px; color: var(--accent); }
+
+    .list { padding-left: 18px; color: var(--muted); }
+
+    footer {
+      padding: 20px; text-align: center; color: var(--muted);
+      border-top: 1px solid #1f2933; margin-top: 24px;
+    }
+
+    .badge {
+      display: inline-block; padding: 4px 10px; border-radius: 999px;
+      background: #0ea5e922; color: var(--accent); font-size: 12px;
+      border: 1px solid #0ea5e955;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <h1>My Dashboard</h1>
+      <span>Personal overview & projects</span>
+    </div>
+    <div class="badge">Online</div>
+  </header>
+
+  <main class="container">
+    <section class="grid">
+
+            <!-- Profile Card -->
+      <div class="card">
+        <h2>Profile</h2>
+                <p><strong>Name:</strong> T. Durga Sashank</p>
+        <p><strong>Age:</strong> 20</p>
+        <p><strong>Qualification:</strong> B.Tech – 2nd Year</p>
+        <p><strong>College:</strong> Saveetha School of Engineering College</p>
+        <p><strong>Role:</strong> Engineering Student</p>
+        <p><strong>Email:</strong> durgasashanktalari@gmail.com</p>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="card">
+        <h2>Quick Stats</h2>
+        <div class="stat"><span>Projects</span><strong>5</strong></div>
+        <div class="stat"><span>Papers</span><strong>1</strong></div>
+        <div class="stat"><span>Skills</span><strong>8</strong></div>
+      </div>
+
+      <!-- Current Work -->
+      <div class="card">
+        <h2>Current Work</h2>
+        <p>Design and Characterization of a Low‑Power CMOS Voltage Regulator for IoT Sensors</p>
+        <span class="badge">Research</span>
+      </div>
+
+                  <!-- Skills -->
+      <div class="card">
+                <h2>Skills</h2>
+        <ul class="list">
+          <li>CMOS Fundamentals & VLSI Basics</li>
+          <li>Low Power Electronics (Beginner)</li>
+          <li>Digital Electronics & Logic Design</li>
+          <li>Analog Electronics (Basics)</li>
+          <li>Embedded Systems Fundamentals</li>
+          <li>IoT Architecture & Sensors</li>
+          <li>HTML, CSS (Web Development)</li>
+          <li>JavaScript (Beginner)</li>
+          <li>Python Programming (Basics)</li>
+          <li>MATLAB (Beginner)</li>
+          <li>C Programming (Basics)</li>
+          <li>Problem Solving & Debugging</li>
+        </ul>
+      </div>
+
+            <!-- Career Ideas -->
+      <div class="card">
+        <h2>Career Ideas</h2>
+        <p><strong>VLSI Engineer:</strong> Work on chip design, low‑power circuits, and semiconductor technologies.</p>
+        <p><strong>Embedded Systems Engineer:</strong> Build hardware‑software systems for IoT and real‑time applications.</p>
+        <p><strong>IoT Engineer:</strong> Design smart sensor‑based systems for healthcare, automation, and smart cities.</p>
+        <p><strong>Web Developer (Side Skill):</strong> Create websites and dashboards to showcase projects.</p>
+        <p><strong>Higher Studies:</strong> M.Tech / MS in VLSI, Embedded Systems, or Microelectronics.</p>
+      </div>
+
+            <!-- Extra Information -->
+      <div class="card">
+                <h2>Extra Information</h2>
+        <p><strong>Interests:</strong> Low‑power circuits, IoT sensors, web development</p>
+        <p><strong>Career Goal:</strong> Become a skilled VLSI / Embedded Systems Engineer</p>
+        <p><strong>Languages:</strong> English, Telugu</p>
+        <p><strong>Hobbies:</strong> Cricket, Reading Books</p>
+      </div>
+
+          <!-- Charts Section -->
+      <div class="card" style="grid-column: 1 / -1;">
+        <h2>Progress Overview</h2>
+        <canvas id="progressChart" height="120"></canvas>
+      </div>
+
+      <div class="card">
+        <h2>Skills Proficiency</h2>
+        <canvas id="skillsChart" height="180"></canvas>
+      </div>
+
+      <div class="card">
+        <h2>Publications</h2>
+        <canvas id="pubChart" height="180"></canvas>
+      </div>
+
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const progressChart = new Chart(document.getElementById('progressChart'), {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Mar', 'May', 'Jul', 'Sep', 'Nov'],
+        datasets: [{
+          label: 'Research Progress (%)',
+          data: [10, 25, 40, 60, 75, 90],
+          borderWidth: 2,
+          tension: 0.4
+        }]
+      },
+      options: { responsive: true }
+    });
+
+    const skillsChart = new Chart(document.getElementById('skillsChart'), {
+      type: 'bar',
+      data: {
+        labels: ['CMOS Design', 'IoT', 'HTML/CSS', 'JavaScript', 'Data Analysis'],
+        datasets: [{
+          label: 'Skill Level (%)',
+          data: [85, 80, 70, 65, 75],
+          borderWidth: 1
+        }]
+      },
+      options: { indexAxis: 'y', responsive: true }
+    });
+
+    const pubChart = new Chart(document.getElementById('pubChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Published', 'In Review', 'In Progress'],
+        datasets: [{
+          data: [1, 0, 1]
+        }]
+      },
+      options: { responsive: true }
+    });
+  </script>
+
+
+  <footer>
+    © 2026 Your Name · Personal Dashboard
+  </footer>
+
+</body>
+</html>
